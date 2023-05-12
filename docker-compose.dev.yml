@@ -14,13 +14,13 @@ services:
     restart: always
     ports:
       - 3000:3000
-    networks:
-      - biogpt_network
+    # networks:
+    #   - biogpt_network
 
   # Add more containers below (nginx, postgres, etc.)
 
 # Define a network, which allows containers to communicate
 # with each other, by using their container name as a hostname
-networks:
-  biogpt_network:
-    external: true
+# networks:
+#   biogpt_network:
+#     external: true
