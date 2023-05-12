@@ -1,26 +1,13 @@
-version: '3'
-
+version: '3.8'
 services:
-  next-app:
-    container_name: next-app
+  web:
     build:
-      context: .
-      dockerfile: dev.Dockerfile
-    environment:
-      ENV_VARIABLE: ${ENV_VARIABLE}
-      NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
+      context: ./
+      target: runner
     volumes:
-      - ./:/app
-    restart: always
+      - .:/app
+    command: npm run dev
     ports:
-      - 3000:3000
-    # networks:
-    #   - biogpt_network
-
-  # Add more containers below (nginx, postgres, etc.)
-
-# Define a network, which allows containers to communicate
-# with each other, by using their container name as a hostname
-# networks:
-#   biogpt_network:
-#     external: true
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
