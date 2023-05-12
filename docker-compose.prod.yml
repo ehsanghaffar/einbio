@@ -4,7 +4,7 @@ services:
   next-app:
     container_name: next-app
     build:
-      context: ./next-app
+      context: .
       dockerfile: prod.Dockerfile
       args:
         ENV_VARIABLE: ${ENV_VARIABLE}
