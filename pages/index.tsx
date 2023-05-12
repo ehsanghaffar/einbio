@@ -12,7 +12,7 @@ import LoadingDots from "../components/LoadingDots";
 const Home: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
-  const [vibe, setVibe] = useState<VibeType>("معمولی");
+  const [vibe, setVibe] = useState<VibeType>("حرفه‌ای");
   const [generatedBios, setGeneratedBios] = useState<String>("");
 
   const bioRef = useRef<null | HTMLDivElement>(null);
@@ -76,17 +76,10 @@ const Home: NextPage = () => {
 
       <Header />
       <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 mt-12 sm:mt-12">
-        <a
-          className="flex max-w-fit items-center justify-center space-x-2 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm text-gray-600 shadow-md transition-colors hover:bg-gray-100 mb-5"
-          href="https://github.com/ehsanghaffar/biogpt"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Github />
-          <p className="px-2">سورس پروژه</p>
-        </a>
         <h1 className="sm:text-6xl text-4xl max-w-[708px] !leading-[6rem] font-bold text-slate-900">
-          با چت جی‌پی‌تی‌ بایو حرفه‌ای برای خودت بساز
+          با
+          <span className="px-2 text-[#0BA37F]">ChatGPT</span> برای خودت بایو
+          حـرفه‌ای بساز 😎
         </h1>
         <p className="text-slate-500 mt-5"></p>
         <div className="max-w-xl w-full">
@@ -98,11 +91,13 @@ const Home: NextPage = () => {
               alt="1 icon"
               className="mb-5 sm:mb-0 mx-2 rounded-full"
             />
-            <p className="text-left font-medium">
+            <p className="text-left font-medium text-slate-500">
               <span className="text-slate-500">
-                یکم در مورد خودت بنویس، مثل اون چیزی که توی کادر هست
+                یکم در مورد خودت اینجا 👇🏻 بنویس
               </span>
-              .
+              <span className="px-1 text-slate-400">
+                (مثل نمونه‌ای که گذاشتم)
+              </span>
             </p>
           </div>
           <textarea
@@ -122,7 +117,13 @@ const Home: NextPage = () => {
               height={30}
               alt="1 icon"
             />
-            <p className="text-left font-medium">نوع بایو رو انتخاب کن</p>
+            <p className="text-left font-medium">
+              چه جوری باشه؟
+              <span className="text-slate-400">
+                {" "}
+                (حرفه‌ای 😎، معمولی🙂 یا طنز🤪)
+              </span>
+            </p>
           </div>
           <div className="block">
             <DropDown vibe={vibe} setVibe={(newVibe) => setVibe(newVibe)} />
@@ -130,10 +131,10 @@ const Home: NextPage = () => {
 
           {!loading && (
             <button
-              className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full"
+              className="bg-black rounded-lg text-white font-semibold px-4 py-3 sm:mt-10 mt-8 hover:bg-black/70 w-2/4"
               onClick={(e) => generateBio(e)}
             >
-              شروع کن
+              بزن اینجا تا بسازم 👋🏻
             </button>
           )}
           {loading && (
@@ -159,7 +160,7 @@ const Home: NextPage = () => {
                   className="sm:text-4xl text-3xl font-bold text-slate-900 mx-auto"
                   ref={bioRef}
                 >
-                  این هم دو تا بایو
+                  این هم دو تا بایو 😌
                 </h2>
               </div>
               <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto">
