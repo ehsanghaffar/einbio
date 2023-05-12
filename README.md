@@ -6,16 +6,29 @@
 
 این پروژه بر اساس ورودی کاربر با  [چت‌جی‌پی‌تی](https://openai.com/api/)  بایو برای شبکه‌های اجتمای مثل اینستاگرام و تویتر می‌سازه
 
-## Demo
+## دمو
 
 [دمو پروژه](https://bio.ehsanghaffarii.ir)
-
-## Deployment
 
 راه‌اندازی با یک کلیک
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ehsanghaffar/biogpt&env=OPENAI_API_KEY&project-name=bio-gpt&repo-name=biogpt)
 
-## پیشنهاد یا هرچی
+
+## راه‌اندازی با داکر
+
+```bash
+# یک داکر نتورک بساز
+docker network create my_network
+
+# پروژه رو بیلد بگیر
+docker-compose -f docker-compose.dev.yml build
+
+# پروژه رو راه اندازی کن
+docker-compose -f docker-compose.dev.yml up
+```
+
+#### پیشنهاد یا هرچی
 
 اگه در مورد این پروژه سوال یا نظر یا هر چی 😁 داری ایمیل من اینه [ghafari.5000@gmail.com](mailto:ghafari.5000@gmail.com)
+
