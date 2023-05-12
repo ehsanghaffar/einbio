@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@import url('../public/fonts/font-face.css');
+@tailwind utilities;
+
+* {
+  font-family: 'Sahel';
+}
