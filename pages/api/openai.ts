@@ -1,5 +1,4 @@
 import { OpenAIStream, OpenAIStreamPayload } from "../../lib/OpenAIStream";
-import openai from "../../lib/OpenAiCompletaions";
 
 if (!process.env.OPENAI_API_KEY) {
   throw new Error("Missing env var from OpenAI");
@@ -31,8 +30,7 @@ const handler = async (req: Request): Promise<any> => {
   };
 
   try {
-    // const stream = await OpenAIStream(payload);
-    const stream = await openai.createChatCompletion(payload)
+    const stream = await OpenAIStream(payload);
     return stream
   } catch (err) {
     return new Response(err as any, { status: 500 });

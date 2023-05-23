@@ -1,9 +1,8 @@
 import { Configuration, OpenAIApi } from 'openai'
 
-if (!process.env.OPENAI_API_KEY) {
-  console.log("api", process.env)
-  process.env.OPENAI_API_KEY = "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"
-}
+// if (!process.env.OPENAI_API_KEY) {
+// process.env.OPENAI_API_KEY = ""
+// }
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,

@@ -7,7 +7,7 @@ services:
       # target: runner
     volumes:
       - .:/app
-    command: npm run dev
+    command: npm run start
     ports:
       - "3000:3000"
     environment:
