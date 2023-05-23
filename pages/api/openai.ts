@@ -1,15 +1,16 @@
 import { OpenAIStream, OpenAIStreamPayload } from "../../lib/OpenAIStream";
+import openai from "../../lib/OpenAiCompletaions";
 
 if (!process.env.OPENAI_API_KEY) {
   throw new Error("Missing env var from OpenAI");
 }
 
-export const config = {
-  runtime: "edge",
-};
+// export const config = {
+//   runtime: "edge",
+// };
 
-const handler = async (req: Request): Promise<Response> => {
-  const { prompt } = (await req.json()) as {
+const handler = async (req: Request): Promise<any> => {
+  const { prompt } = (await req.body) as {
     prompt?: string;
   };
 
@@ -30,8 +31,9 @@ const handler = async (req: Request): Promise<Response> => {
   };
 
   try {
-    const stream = await OpenAIStream(payload);
-    return new Response(stream);
+    // const stream = await OpenAIStream(payload);
+    const stream = await openai.createChatCompletion(payload)
+    return stream
   } catch (err) {
     return new Response(err as any, { status: 500 });
   }

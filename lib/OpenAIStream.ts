@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   createParser,
   ParsedEvent,
@@ -29,13 +30,13 @@ export async function OpenAIStream(payload: OpenAIStreamPayload) {
 
   let counter = 0;
 
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+  const res = await axios("https://api.openai.com/v1/chat/completions", {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${process.env.OPENAI_API_KEY ?? ""}`,
     },
     method: "POST",
-    body: JSON.stringify(payload),
+    data: JSON.stringify(payload),
   });
 
   const stream = new ReadableStream({
@@ -68,7 +69,7 @@ export async function OpenAIStream(payload: OpenAIStreamPayload) {
       // stream response (SSE) from OpenAI may be fragmented into multiple chunks
       // this ensures we properly read chunks and invoke an event for each SSE event stream
       const parser = createParser(onParse);
-      for await (const chunk of res.body as any) {
+      for await (const chunk of res.data as any) {
         parser.feed(decoder.decode(chunk));
       }
     },

@@ -5,15 +5,15 @@ import { useRef, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import DropDown, { VibeType } from "../components/DropDown";
 import Footer from "../components/Footer";
-import Github from "../components/GitHub";
 import Header from "../components/Header";
 import LoadingDots from "../components/LoadingDots";
+import openai from "../lib/OpenAiCompletaions";
 
 const Home: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
   const [vibe, setVibe] = useState<VibeType>("حرفه‌ای");
-  const [generatedBios, setGeneratedBios] = useState<String>("");
+  const [generatedBios, setGeneratedBios] = useState<String | undefined>("");
 
   const bioRef = useRef<null | HTMLDivElement>(null);
 
@@ -23,73 +23,67 @@ const Home: NextPage = () => {
     }
   };
 
-  const generateBio = async (e: any) => {
+  const generateBio = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.preventDefault();
     setGeneratedBios("");
     setLoading(true);
-    const response = await fetch("/api/openai", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        prompt: `Generate 2 ${vibe} biographies with no hashtags, in Persian language, and clearly labeled "1." and "2.". ${
-          vibe === "طنز"
-            ? "Make sure there is a joke in there and it's a little ridiculous."
-            : ""
-        } Make sure each generated biography is less than 160 characters, has short sentences that are found in Twitter bios, and base them on this context: ${bio}${
-          bio.slice(-1) === "." ? "" : " "
-        }`,
-      }),
-    });
 
-    if (!response.ok) {
-      throw new Error(response.statusText);
+    try {
+      const response = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "system",
+            content: `Make sure each generated biography is less than 170 characters, has short sentences that are found in Twitter bios.`,
+          },
+          {
+            role: "user",
+            content: `Generate 2 ${vibe} biographies with no hashtags, in Persian language, and clearly labeled "1." and "2.". ${
+              vibe === "طنز"
+                ? "Make sure there is a joke in there and it's a little ridiculous."
+                : ""
+            } base them on this context: ${bio}${
+              bio.slice(-1) === "." ? "" : " "
+            }`,
+          },
+        ],
+      });
+      if (response.data) {
+        const generatedb = response.data.choices[0].message;
+        setGeneratedBios(generatedb?.content);
+        setLoading(false);
+      }
+      scrollToBios();
+    } catch (error) {
+      console.log("e", error);
+      setLoading(false);
     }
-
-    // This data is a ReadableStream
-    const data = response.body;
-    if (!data) {
-      return;
-    }
-
-    const reader = data.getReader();
-    const decoder = new TextDecoder();
-    let done = false;
-
-    while (!done) {
-      const { value, done: doneReading } = await reader.read();
-      done = doneReading;
-      const chunkValue = decoder.decode(value);
-      setGeneratedBios((prev) => prev + chunkValue);
-    }
-    scrollToBios();
-    setLoading(false);
   };
 
   return (
     <div className="flex max-w-5xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
       <Head>
-        <title>جی‌پی‌تی‌ بایو</title>
+        <title> بایو جی‌پی‌تی‌</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Header />
-      <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 mt-12 sm:mt-12">
-        <h1 className="sm:text-6xl text-4xl max-w-[708px] !leading-[6rem] font-bold text-slate-900">
+      <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 mt-5 sm:mt-5">
+        <h1 className="sm:text-3xl text-4xl max-w-[708px] !leading-[6rem] font-bold text-slate-900">
           با
           <span className="px-2 text-[#0BA37F]">ChatGPT</span> برای خودت بایو
           حـرفه‌ای بساز 😎
         </h1>
-        <p className="text-slate-500 mt-5"></p>
         <div className="max-w-xl w-full">
-          <div className="flex mt-10 items-center space-x-3">
+          <div className="flex mt-5 items-center space-x-3">
             <Image
               src="/1-black.png"
               width={30}
               height={30}
               alt="1 icon"
-              className="mb-5 sm:mb-0 mx-2 rounded-full"
+              className="mb-5 sm:mb-0 mx-1 rounded-full"
             />
             <p className="text-left font-medium text-slate-500">
               <span className="text-slate-500">
@@ -111,7 +105,7 @@ const Home: NextPage = () => {
           />
           <div className="flex mb-5 items-center space-x-3">
             <Image
-              className="mx-2 rounded-full"
+              className="mx-1 rounded-full"
               src="/2-black.png"
               width={30}
               height={30}
@@ -173,7 +167,7 @@ const Home: NextPage = () => {
                         className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border"
                         onClick={() => {
                           navigator.clipboard.writeText(generatedBio);
-                          toast("Bio copied to clipboard", {
+                          toast("بایو کپی شد", {
                             icon: "✂️",
                           });
                         }}

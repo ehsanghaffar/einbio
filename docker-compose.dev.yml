@@ -2,8 +2,9 @@ version: '3.8'
 services:
   web:
     build:
-      context: ./
-      target: runner
+      context: .
+      dockerfile: dev.Dockerfile
+      # target: runner
     volumes:
       - .:/app
     command: npm run dev
