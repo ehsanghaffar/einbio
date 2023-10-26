@@ -1,34 +1,142 @@
-# [BioGPT](https://www.bio.ehsanghaffarii.ir/)
+# BioGPT
 
-این پروژه با استفاده از هوش مصنوعی بایو شبکه‌های اجتماعی برای شما  میسازه
+![GitHub repo size](https://img.shields.io/github/repo-size/your-username/your-repo-name)
+![GitHub issues](https://img.shields.io/github/issues/your-username/your-repo-name)
+![GitHub stars](https://img.shields.io/github/stars/your-username/your-repo-name)
+![GitHub forks](https://img.shields.io/github/forks/your-username/your-repo-name)
+![GitHub license](https://img.shields.io/github/license/your-username/your-repo-name)
 
-## کارش چیه؟
+Create engaging social media bios with ease using the Social Media Bio Generator! This web application generates unique and personalized social media bios based on user input and offers different vibes to choose from.
 
-این پروژه بر اساس ورودی کاربر با  [چت‌جی‌پی‌تی](https://openai.com/api/)  بایو برای شبکه‌های اجتمای مثل اینستاگرام و تویتر می‌سازه
+## Table of Contents
 
-## دمو
+- [Features](#features)
+- [Demo](#demo)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Docker Compose](#docker-compose)
+- [Vibes](#vibes)
+- [Contributing](#contributing)
+- [License](#license)
 
-[دمو پروژه](https://bio.ehsanghaffarii.ir)
+## Features
 
-راه‌اندازی با یک کلیک
+- Generate personalized social media bios.
+- Choose from three different vibes: Advanced, Regular, and Funny.
+- User-friendly interface for input and bio selection.
+- Copy the generated bio to the clipboard with a single click.
+- Mobile-responsive design for a seamless experience on all devices.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ehsanghaffar/biogpt&env=OPENAI_API_KEY&project-name=bio-gpt&repo-name=biogpt)
+## Demo
 
+![Demo](demo.gif)
 
-## راه‌اندازی با داکر
+Check out the live demo of the Social Media Bio Generator [here](https://bio.ehsanghaffarii.ir/).
 
-```bash
-# یک داکر نتورک بساز
-docker network create my_network
+## Installation
 
-# پروژه رو بیلد بگیر
-docker-compose -f docker-compose.dev.yml build
+To run this application locally, follow these steps:
 
-# پروژه رو راه اندازی کن
-docker-compose -f docker-compose.dev.yml up
-```
+1. Clone this repository to your local machine:
 
-#### پیشنهاد یا هرچی
+   ```bash
+   git clone https://github.com/ehsanghaffar/biogpt your-repo-name
+   ```
 
-اگه در مورد این پروژه سوال یا نظر یا هر چی 😁 داری ایمیل من اینه [ghafari.5000@gmail.com](mailto:ghafari.5000@gmail.com)
+2. Navigate to the project directory:
 
+   ```bash
+   cd your-repo-name
+   ```
+
+3. Install the required dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Start the application:
+
+   ```bash
+   npm start
+   ```
+
+5. Open your web browser and go to [http://localhost:3000](http://localhost:3000) to use the Social Media Bio Generator.
+
+## Usage
+
+1. Visit the web application at [https://bio.ehsanghaffarii.ir/](https://bio.ehsanghaffarii.ir/).
+
+2. Enter a short description about yourself or the person for whom you want to create a social media bio.
+
+3. Select the desired vibe from the options: Advanced, Regular, or Funny.
+
+4. Click the "Generate Bio" button, and a unique social media bio will be displayed.
+
+5. Click the "Copy to Clipboard" button to easily copy the generated bio.
+
+## Docker Compose
+
+You can also run the Social Media Bio Generator using Docker Compose. Follow these steps:
+
+1. Create a Docker network:
+
+   ```bash
+   docker network create my_network
+   ```
+
+2. Build the project:
+
+   ```bash
+   docker-compose -f docker-compose.dev.yml build
+   ```
+
+3. Start the application:
+
+   ```bash
+   docker-compose -f docker-compose.dev.yml up
+   ```
+
+## Vibes
+
+The Social Media Bio Generator offers three different vibes to suit your personality and style:
+
+- **Advanced**: For a professional and sophisticated bio.
+- **Regular**: A balanced and standard bio.
+- **Funny**: Add some humor to your bio for a fun and light-hearted feel.
+
+## Contributing
+
+We welcome contributions from the open-source community. If you'd like to contribute to this project, please follow these steps:
+
+1. Fork this repository.
+
+2. Create a new branch for your feature or bug fix:
+
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+3. Make your changes and commit them:
+
+   ```bash
+   git commit -m 'Add your commit message here'
+   ```
+
+4. Push your changes to your fork:
+
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+5. Create a pull request on the original repository.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+**Note**: Don't forget to replace the placeholders such as `your-username`, `your-repo-name`, and `your-website-url` with your actual GitHub information and website URL. Also, ensure that the Docker Compose section accurately reflects your project's setup.
+
+Happy coding and enjoy using the Social Media Bio Generator!
