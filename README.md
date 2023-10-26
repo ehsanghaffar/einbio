@@ -1,10 +1,10 @@
 # BioGPT
 
-![GitHub repo size](https://img.shields.io/github/repo-size/your-username/your-repo-name)
-![GitHub issues](https://img.shields.io/github/issues/your-username/your-repo-name)
-![GitHub stars](https://img.shields.io/github/stars/your-username/your-repo-name)
-![GitHub forks](https://img.shields.io/github/forks/your-username/your-repo-name)
-![GitHub license](https://img.shields.io/github/license/your-username/your-repo-name)
+![GitHub repo size](https://img.shields.io/github/repo-size/ehsanghaffar/biogpt)
+![GitHub issues](https://img.shields.io/github/issues/ehsanghaffar/biogpt)
+![GitHub stars](https://img.shields.io/github/stars/ehsanghaffar/biogpt)
+![GitHub forks](https://img.shields.io/github/forks/ehsanghaffar/biogpt)
+![GitHub license](https://img.shields.io/github/license/ehsanghaffar/biogpt)
 
 Create engaging social media bios with ease using the Social Media Bio Generator! This web application generates unique and personalized social media bios based on user input and offers different vibes to choose from.
 
@@ -40,13 +40,13 @@ To run this application locally, follow these steps:
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/ehsanghaffar/biogpt your-repo-name
+   git clone https://github.com/ehsanghaffar/biogpt 
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd your-repo-name
+   cd biogpt
    ```
 
 3. Install the required dependencies:
@@ -65,7 +65,7 @@ To run this application locally, follow these steps:
 
 ## Usage
 
-1. Visit the web application at [https://bio.ehsanghaffarii.ir/](https://bio.ehsanghaffarii.ir/).
+1. Visit the web application at [your-website-url](https://bio.ehsanghaffarii.ir/).
 
 2. Enter a short description about yourself or the person for whom you want to create a social media bio.
 
@@ -136,7 +136,3 @@ We welcome contributions from the open-source community. If you'd like to contri
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
-
-**Note**: Don't forget to replace the placeholders such as `your-username`, `your-repo-name`, and `your-website-url` with your actual GitHub information and website URL. Also, ensure that the Docker Compose section accurately reflects your project's setup.
-
-Happy coding and enjoy using the Social Media Bio Generator!
