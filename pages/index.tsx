@@ -36,7 +36,10 @@ const Home: NextPage = () => {
         messages: [
           {
             role: "system",
-            content: `Make sure each generated biography is less than 170 characters, has short sentences that are found in Twitter bios.`,
+            content: `Generate a compelling social media bio for user centered around context which them provide you. 
+            The bio should be concise (150-200 characters) and capture the essence of user in a way that resonates with context. 
+            Include elements that showcase personality, passion, and any relevant hashtags or keywords. 
+            Feel free to add a touch of creativity to make it engaging.`,
           },
           {
             role: "user",
@@ -98,9 +101,9 @@ const Home: NextPage = () => {
             value={bio}
             onChange={(e) => setBio(e.target.value)}
             rows={4}
-            className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black my-5"
+            className="w-full rounded-md border-gray-600 shadow-sm focus:border-black focus:ring-black my-5"
             placeholder={
-              "برنامه نویس ارشد فرانت اند. جاوااسکریپت، ری‌اکت و انگولار. شرکت اسنپ"
+              "طراح گرافیک، ۴ سال سابقه کار"
             }
           />
           <div className="flex mb-5 items-center space-x-3">
@@ -131,12 +134,12 @@ const Home: NextPage = () => {
               بزن اینجا تا بسازم 👋🏻
             </button>
           )}
-          {loading && (
+          {!loading && (
             <button
-              className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full"
+              className="bg-black rounded-lg text-white font-medium gap-2 px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-2/4"
               disabled
             >
-              <LoadingDots color="white" style="large" />
+              <LoadingDots color="white" style="large" /> صبر کن
             </button>
           )}
         </div>
