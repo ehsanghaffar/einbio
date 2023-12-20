@@ -68,15 +68,17 @@ const Home: NextPage = () => {
   return (
     <div className="flex max-w-5xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
       <Head>
-        <title> بایو جی‌پی‌تی‌</title>
+        <title> عین جـی پـی تـی</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Header />
       <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 mt-5 sm:mt-5">
-        <h1 className="sm:text-3xl text-4xl max-w-[708px] !leading-[6rem] font-bold text-slate-900">
+        <h1 className="flex sm:text-3xl text-4xl max-w-[708px] !leading-[6rem] font-bold text-slate-900">
           با
-          <span className="px-2 text-[#0BA37F]">ChatGPT</span> برای خودت بایو
+          <img src="logo.png" className="" width={200} height={30}/>
+          {/* <span className="px-2 text-[#0BA37F]">EinGPT</span>  */}
+          برای خودت بایو
           حـرفه‌ای بساز 😎
         </h1>
         <div className="max-w-xl w-full">
@@ -134,7 +136,7 @@ const Home: NextPage = () => {
               بزن اینجا تا بسازم 👋🏻
             </button>
           )}
-          {!loading && (
+          {loading && (
             <button
               className="bg-black rounded-lg text-white font-medium gap-2 px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-2/4"
               disabled
