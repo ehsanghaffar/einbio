@@ -7,7 +7,7 @@ services:
       # target: runner
     volumes:
       - .:/app
-    command: npm run start
+    command: yarn start
     ports:
       - "3000:3000"
     environment:
