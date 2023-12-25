@@ -2,7 +2,7 @@ FROM node:18-alpine AS deps
 # RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-COPY package.json ./
+COPY package.json yarn.lock ./
 RUN yarn
 
 FROM node:18-alpine AS builder
