@@ -88,13 +88,13 @@ You can also run the Social Media Bio Generator using Docker Compose. Follow the
 2. Build the project:
 
    ```bash
-   docker-compose -f docker-compose.dev.yml build
+   docker compose -f docker-compose.dev.yml build
    ```
 
 3. Start the application:
 
    ```bash
-   docker-compose -f docker-compose.dev.yml up
+   docker compose -f docker-compose.dev.yml up
    ```
 
 ## Vibes
