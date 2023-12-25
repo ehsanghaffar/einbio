@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import { useRef, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import DropDown, { VibeType } from "../components/DropDown";
@@ -8,6 +7,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import LoadingDots from "../components/LoadingDots";
 import openai from "../lib/OpenAiCompletaions";
+import { CheckSquare } from "lucide-react";
 
 const Home: NextPage = () => {
   const [loading, setLoading] = useState(false);
@@ -73,28 +73,18 @@ const Home: NextPage = () => {
       </Head>
 
       <Header />
-      <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 mt-5 sm:mt-5">
-        <h1 className="flex sm:text-3xl text-4xl max-w-[708px] !leading-[6rem] font-bold text-slate-900">
+      <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4">
+        <h2 className="sm:text-2xl text-2xl max-w-[708px] !leading-[6rem] font-bold text-slate-900">
           با
-          <img src="logo.png" className="" width={200} height={30}/>
-          {/* <span className="px-2 text-[#0BA37F]">EinGPT</span>  */}
-          برای خودت بایو
-          حـرفه‌ای بساز 😎
-        </h1>
+          <span className="px-2 text-[#0BA37F]">EinGPT</span>
+          برای خودت بایو حـرفه‌ای بساز 😎
+        </h2>
         <div className="max-w-xl w-full">
-          <div className="flex mt-5 items-center space-x-3">
-            <Image
-              src="/1-black.png"
-              width={30}
-              height={30}
-              alt="1 icon"
-              className="mb-5 sm:mb-0 mx-1 rounded-full"
-            />
-            <p className="text-left font-medium text-slate-500">
-              <span className="text-slate-500">
-                یکم در مورد خودت اینجا 👇🏻 بنویس
-              </span>
-              <span className="px-1 text-slate-400">
+          <div className="flex mt-5 items-center gap-2 space-x-3">
+            <CheckSquare size={18} />
+            <p className="text-left font-medium">
+              <span className="text-slate-700">یکم در مورد خودت بنویس</span>
+              <span className="px-1 text-slate-400 text-xs">
                 (مثل نمونه‌ای که گذاشتم)
               </span>
             </p>
@@ -104,21 +94,13 @@ const Home: NextPage = () => {
             onChange={(e) => setBio(e.target.value)}
             rows={4}
             className="w-full rounded-md border-gray-600 shadow-sm focus:border-black focus:ring-black my-5"
-            placeholder={
-              "طراح گرافیک، ۴ سال سابقه کار"
-            }
+            placeholder={"طراح گرافیک، ۴ سال سابقه کار"}
           />
-          <div className="flex mb-5 items-center space-x-3">
-            <Image
-              className="mx-1 rounded-full"
-              src="/2-black.png"
-              width={30}
-              height={30}
-              alt="1 icon"
-            />
-            <p className="text-left font-medium">
-              چه جوری باشه؟
-              <span className="text-slate-400">
+          <div className="flex mb-5 items-center space-x-3 gap-2">
+            <CheckSquare size={18} />
+            <p className="text-left font-medium text-slate-700">
+              نوعش رو انتخاب کن
+              <span className="text-slate-400 text-xs">
                 {" "}
                 (حرفه‌ای 😎، معمولی🙂 یا طنز🤪)
               </span>

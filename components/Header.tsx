@@ -4,9 +4,9 @@ import Github from "./GitHub";
 
 export default function Header() {
   return (
-    <header className="flex justify-between items-center w-full mt-3 border-b-2 pb-5 sm:px-4 px-2">
+    <header className="flex justify-between items-center w-full mt-1 border-b-2 sm:px-4 px-2">
       <Link href="/" className="flex space-x-3">
-        <h1 className="sm:text-4xl text-2xl font-bold ml-2 tracking-tight">
+        <h1 className="sm:text-xl text-xl font-bold ml-2 tracking-tight">
         عین جـی پـی تـی
         </h1>
       </Link>
@@ -14,9 +14,9 @@ export default function Header() {
         <Image
           alt="ClubGPT icon"
           src="/logo.png"
-          className="sm:w-10 sm:h-[30px] "
+          className="sm:w-25"
           width={200}
-          height={100}
+          height={80}
         />
       </a>
       <a
