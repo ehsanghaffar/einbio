@@ -19,6 +19,9 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
+      "@/*": [
+        "./*"
+      ],
       "react": [
         "./node_modules/@types/react"
       ]
@@ -31,6 +34,7 @@
   },
   "include": [
     "next-env.d.ts",
+    "environment.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
