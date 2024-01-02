@@ -1,32 +1,28 @@
 import Image from "next/image";
 import Link from "next/link";
 import Github from "./GitHub";
+import { GithubIcon } from "lucide-react";
 
 export default function Header() {
   return (
-    <header className="flex justify-between items-center w-full mt-1 border-b-2 sm:px-4 px-2">
-      <Link href="/" className="flex space-x-3">
-        <h1 className="sm:text-xl text-xl font-bold ml-2 tracking-tight">
-        عین جـی پـی تـی
-        </h1>
-      </Link>
-      <a href="https://ehsanghaffarii.ir" target="_blank" rel="noreferrer">
+    <header className="flex justify-between items-center space-x-4 pb-2 border-b-2 sm:px-4">
+      <Link href="/">
         <Image
           alt="ClubGPT icon"
           src="/logo.png"
-          className="sm:w-25"
-          width={200}
-          height={80}
+          className="sm:w-36"
+          width={100}
+          height={60}
         />
-      </a>
+      </Link>
       <a
-        className="flex max-w-fit items-center justify-center space-x-2 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm text-gray-600 shadow-md transition-colors hover:bg-gray-100 mb-5"
+        className="flex items-center gap-2 justify-center border py-1 px-2 rounded text-xs sm:text-sm text-gray-600 transition-colors hover:bg-gray-100"
         href="https://github.com/ehsanghaffar/biogpt"
         target="_blank"
         rel="noopener noreferrer"
       >
         <Github />
-        <p className="px-2">سورس پروژه</p>
+        <p>سورس کد</p>
       </a>
     </header>
   );

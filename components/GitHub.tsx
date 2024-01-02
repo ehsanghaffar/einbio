@@ -2,8 +2,8 @@ export default function Github({ className }: { className?: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
+      width="14"
+      height="14"
       fill="currentColor"
       viewBox="0 0 24 24"
       className={className}
