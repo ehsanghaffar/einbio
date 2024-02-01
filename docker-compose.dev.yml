@@ -1,14 +1,12 @@
-version: '3.8'
+version: "3.8"
 services:
-  web:
+  biogpt:
     build:
       context: .
-      dockerfile: dev.Dockerfile
-      # target: runner
+      dockerfile: Dockerfile
+    restart: always
     volumes:
-      - .:/app
-    command: yarn start
+      - /app/node_modules
+      - /app/.next
     ports:
       - "3000:3000"
-    environment:
-      NODE_ENV: development

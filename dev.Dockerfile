@@ -1,41 +1,22 @@
-FROM node:20-alpine AS deps
+FROM node:18-alpine
 
-# RUN apk add --no-cache libc6-compat
+RUN mkdir -p /app
+
 WORKDIR /app
 
-COPY package.json yarn.lock ./
-RUN yarn
+COPY package.json /app
 
-FROM node:20-alpine AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
+RUN npm install -g next
 
-ENV NEXT_TELEMETRY_DISABLED 1
+RUN npm install
 
-RUN yarn global add next react react-dom
+COPY . /app
 
-RUN yarn build
+RUN mkdir -p /app/.next/cache/images
+VOLUME /app/.next/cache/images
 
-FROM node:20-alpine AS runner
-WORKDIR /app
-
-ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
-
-RUN yarn global add next react react-dom
-
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
-COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
-
-USER nextjs
+RUN npm run build
 
 EXPOSE 3000
 
-ENV PORT 3000
-
-CMD ["yarn", "start"]
+CMD npm run start
