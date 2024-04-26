@@ -1,6 +1,7 @@
 import Header from '@/components/Header';
 import './globals.css';
 import Footer from '@/components/Footer';
+import { Toaster } from '@/components/ui/sonner';
 
 export default function RootLayout({
   children,
@@ -15,6 +16,7 @@ export default function RootLayout({
         {children}
         </main>
         <Footer />
+        <Toaster richColors />
         </body>
     </html>
   )
