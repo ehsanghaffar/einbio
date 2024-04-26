@@ -12,9 +12,9 @@ import {
 import { useRef, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { CheckSquare } from "lucide-react";
-import openai from "@/lib/OpenAiCompletaions";
 import LoadingDots from "@/components/LoadingDots";
 import { Textarea } from "@/components/ui/textarea";
+import { toast as sonnar } from "sonner";
 
 export type VibeType = "حرفه‌ای" | "معمولی" | "طنز";
 let vibes: VibeType[] = ["حرفه‌ای", "معمولی", "طنز"];
@@ -41,36 +41,29 @@ const BioGenerator = () => {
     setLoading(true);
 
     try {
-      const response = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo",
-        messages: [
-          {
-            role: "system",
-            content: `Generate a compelling social media bio for user centered around context which them provide you. 
-            The bio should be concise (150-200 characters) and capture the essence of user in a way that resonates with context. 
-            Include elements that showcase personality, passion, and any relevant hashtags or keywords. 
-            Feel free to add a touch of creativity to make it engaging.`,
-          },
-          {
-            role: "user",
-            content: `Generate 2 ${vibe} biographies with no hashtags, in Persian language, and clearly labeled "1." and "2.". ${
-              vibe === "طنز"
-                ? "Make sure there is a joke in there and it's a little ridiculous."
-                : ""
-            } base them on this context: ${bio}${
-              bio.slice(-1) === "." ? "" : " "
-            }`,
-          },
-        ],
+      const messages = `Generate 2 ${vibe} biographies with no hashtags, in Persian language, and clearly labeled "1." and "2.". ${
+        vibe === "طنز"
+          ? "Make sure there is a joke in there and it's a little ridiculous."
+          : ""
+      } base them on this context: ${bio}${bio.slice(-1) === "." ? "" : " "}`;
+
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(messages),
       });
-      if (response.data) {
-        const generatedb = response.data.choices[0].message;
-        setGeneratedBios(generatedb?.content);
-        setLoading(false);
-      }
-      scrollToBios();
+      const data = await response.json();
+
+      setGeneratedBios(data);
     } catch (error) {
-      console.log("e", error);
+      const err = error as Error;
+      console.log(err);
+      sonnar.error("به نظر میاد مشکلی هست", {
+        description: err.message,
+      });
+    } finally {
       setLoading(false);
     }
   };
@@ -116,11 +109,12 @@ const BioGenerator = () => {
               </p>
             </div>
             <div className="">
-              <Select 
-                dir="rtl" 
+              <Select
+                dir="rtl"
                 value={vibe}
                 // @ts-ignore
-                onValueChange={setVibe}>
+                onValueChange={setVibe}
+              >
                 <SelectTrigger className="">
                   <SelectValue placeholder="انتخاب کن" />
                 </SelectTrigger>
@@ -128,7 +122,9 @@ const BioGenerator = () => {
                   <SelectGroup>
                     <SelectLabel>وایب</SelectLabel>
                     {vibes.map((vibeItem, index) => (
-                      <SelectItem key={index} value={vibeItem}>{vibeItem}</SelectItem>
+                      <SelectItem key={index} value={vibeItem}>
+                        {vibeItem}
+                      </SelectItem>
                     ))}
                   </SelectGroup>
                 </SelectContent>
