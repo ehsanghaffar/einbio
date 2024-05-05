@@ -156,7 +156,7 @@ const BioGenerator = () => {
             <button
               className="bg-black rounded-lg text-white font-semibold px-4 py-3 sm:mt-10 mt-8 hover:bg-black/70 w-2/4 disabled:bg-black/50"
               onClick={(e) => generateBio(e)}
-              disabled={bio.length === 0 || isCooldown}
+              disabled={bio.length === 0}
             >
               بزن اینجا تا بسازم
             </button>
