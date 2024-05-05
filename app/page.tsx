@@ -46,9 +46,11 @@ const BioGenerator = () => {
           ? "Make sure there is a joke in there and it's a little ridiculous."
           : ""
       } base them on this context: ${bio}${bio.slice(-1) === "." ? "" : " "}`;
+      console.log(messages);
 
       const response = await fetch("/api/chat", {
         method: "POST",
+        mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
         },
@@ -58,6 +60,11 @@ const BioGenerator = () => {
 
       setGeneratedBios(data);
     } catch (error) {
+      if (error instanceof SyntaxError && error.message.includes("JSON")) {
+        console.error("Invalid JSON input:", error);
+      } else {
+        console.error("Unexpected error occurred:", error);
+      }
       const err = error as Error;
       console.log(err);
       sonnar.error("به نظر میاد مشکلی هست", {

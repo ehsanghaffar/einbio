@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <header className="flex justify-between items-center space-x-4 pb-2 border-b-2 sm:px-4">
       <Link href="/">
-        <Image
+        <img
           alt="ClubGPT icon"
           src="/logo.png"
           className="sm:w-36"
