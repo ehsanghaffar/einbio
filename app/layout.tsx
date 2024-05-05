@@ -10,12 +10,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fa" dir="rtl">
-      <body className="flex mx-auto flex-col py-2 min-h-screen">
+      <body className=" min-h-full flex flex-col">
+        <header>
         <Header />
-        <main className="flex flex-1 w-full flex-col items-center justify-center">
+        </header>
+        <main className="flex flex-1">
         {children}
         </main>
+        <footer className='flex flex-col w-full absolute bottom-0'>
         <Footer />
+        </footer>
         <Toaster richColors />
         </body>
     </html>

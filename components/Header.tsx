@@ -5,7 +5,7 @@ import { GithubIcon } from "lucide-react";
 
 export default function Header() {
   return (
-    <header className="flex justify-between items-center space-x-4 pb-2 border-b-2 sm:px-4">
+    <div className="flex justify-between items-center space-x-4 pb-2 border-b-2 sm:px-4">
       <Link href="/">
         <img
           alt="ClubGPT icon"
@@ -24,6 +24,6 @@ export default function Header() {
         <Github />
         <p>سورس کد</p>
       </a>
-    </header>
+    </div>
   );
 }

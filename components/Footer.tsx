@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="border-t pt-2 sm:py-4">
+    <div className="border-t pt-2 sm:py-4">
       <div className="container flex flex-row justify-between items-center">
         <div className="text-xs sm:text-sm">
         ساخته شده با{" "}
@@ -35,6 +35,6 @@ export default function Footer() {
         </Link>
       </div>
       </div>
-    </footer>
+    </div>
   );
 }

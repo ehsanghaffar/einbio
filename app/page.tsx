@@ -181,14 +181,14 @@ const BioGenerator = () => {
             <>
               <div>
                 <h2
-                  className="sm:text-4xl text-3xl font-bold text-slate-900 mx-auto"
+                  className="sm:text-xl text-lg font-bold text-slate-900 mx-auto"
                   ref={bioRef}
                 >
                   این هم دو تا بایو 😌
                 </h2>
               </div>
               <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto">
-                {generatedBios
+                {/* {generatedBios
                   .substring(generatedBios.indexOf("1") + 3)
                   .split("2.")
                   .map((generatedBio) => {
@@ -206,7 +206,7 @@ const BioGenerator = () => {
                         <p>{generatedBio}</p>
                       </div>
                     );
-                  })}
+                  })} */}
               </div>
             </>
           )}
