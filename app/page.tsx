@@ -19,6 +19,8 @@ import { toast as sonnar } from "sonner";
 export type VibeType = "حرفه‌ای" | "معمولی" | "طنز";
 let vibes: VibeType[] = ["حرفه‌ای", "معمولی", "طنز"];
 
+
+
 const BioGenerator = () => {
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
