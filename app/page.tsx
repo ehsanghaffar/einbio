@@ -24,6 +24,7 @@ const BioGenerator = () => {
   const [bio, setBio] = useState("");
   const [vibe, setVibe] = useState<VibeType>("حرفه‌ای");
   const [generatedBios, setGeneratedBios] = useState<String | undefined>("");
+  const [isCooldown, setIsCooldown] = useState(false);
 
   const bioRef = useRef<null | HTMLDivElement>(null);
 
@@ -33,12 +34,21 @@ const BioGenerator = () => {
     }
   };
 
+
+
   const generateBio = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
     setGeneratedBios("");
     setLoading(true);
+
+    if (isCooldown) {
+      toast("لطفا چند لحظه صبر کنید دوباره بزنید", {
+        icon: "⏳",
+      });
+      return;
+    }
 
     try {
       const messages = `Generate 2 ${vibe} biographies with no hashtags, in Persian language, and clearly labeled "1." and "2.". ${
@@ -72,6 +82,7 @@ const BioGenerator = () => {
       });
     } finally {
       setLoading(false);
+      setTimeout(() => setIsCooldown(false), 10000); // Reset cooldown after 3 seconds
     }
   };
 
@@ -140,8 +151,9 @@ const BioGenerator = () => {
           </div>
           {!loading && (
             <button
-              className="bg-black rounded-lg text-white font-semibold px-4 py-3 sm:mt-10 mt-8 hover:bg-black/70 w-2/4"
+              className="bg-black rounded-lg text-white font-semibold px-4 py-3 sm:mt-10 mt-8 hover:bg-black/70 w-2/4 disabled:bg-black/50"
               onClick={(e) => generateBio(e)}
+              disabled={bio.length === 0 || isCooldown}
             >
               بزن اینجا تا بسازم
             </button>
