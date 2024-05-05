@@ -40,8 +40,7 @@ const BioGenerator = () => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    setGeneratedBios("");
-    setLoading(true);
+
 
     if (isCooldown) {
       toast("لطفا چند لحظه صبر کنید دوباره بزنید", {
@@ -49,6 +48,10 @@ const BioGenerator = () => {
       });
       return;
     }
+
+    setGeneratedBios("");
+    setLoading(true);
+    setIsCooldown(true);
 
     try {
       const messages = `Generate 2 ${vibe} biographies with no hashtags, in Persian language, and clearly labeled "1." and "2.". ${
@@ -82,7 +85,7 @@ const BioGenerator = () => {
       });
     } finally {
       setLoading(false);
-      setTimeout(() => setIsCooldown(false), 10000); // Reset cooldown after 3 seconds
+      setTimeout(() => setIsCooldown(false), 10000)
     }
   };
 
