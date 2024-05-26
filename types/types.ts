@@ -10,3 +10,9 @@ export type JWTPayload = {
   userId: string;
   apiKey: string;
 };
+
+
+export interface GeneratedBio {
+  id: string;
+  content: string;
+}
