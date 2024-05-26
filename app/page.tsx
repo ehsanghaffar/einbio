@@ -121,16 +121,20 @@ const BioGenerator = () => {
   return (
     <>
       <div className="flex flex-1 w-full flex-col items-center justify-center text-center px-4">
-        <h2 className="text-xl sm:text-2xl !leading-[4rem] font-bold text-slate-700">
-          با
-          <span className="pl-2 text-orange-500/50">
-            Bio
-          </span>
-          <span className="pr-2 text-gray-300">
-            GPT
-          </span>
+        <div className="flex items-center">
+        <h2 className=" text-xl sm:text-2xl !leading-[4rem] font-bold text-slate-700">
+          با</h2>
+          <img
+          alt="ClubGPT icon"
+          src="/screenshot.png"
+          className="sm:w-36"
+          width={100}
+          height={50}
+        />
+        <h2>
           برای خودت بایو حـرفه‌ای بساز 😎
         </h2>
+        </div>
         <div className="w-full sm:max-w-2xl mt-6 sm:mt-1 p-4 border rounded">
           <div className="grid w-full gap-2">
             <div className="flex items-center gap-2">
