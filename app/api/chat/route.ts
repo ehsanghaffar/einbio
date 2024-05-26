@@ -1,5 +1,5 @@
-import { getOpenAIApiInstance } from "@/lib/OpenAiCompletaions"
-import { errorHandler } from "@/lib/utils";
+import { getOpenAIApiInstance } from "@/libs/OpenAiCompletaions"
+import { errorHandler } from "@/libs/utils";
 
 // export const dynamic = 'force-dynamic'
 
