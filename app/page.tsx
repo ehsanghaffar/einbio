@@ -9,26 +9,46 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { CheckSquare } from "lucide-react";
 import LoadingDots from "@/components/LoadingDots";
 import { Textarea } from "@/components/ui/textarea";
 import { toast as sonnar } from "sonner";
+import { Button } from "@/components/ui/button";
+import { GeneratedBio } from "@/types/types";
 
 export type VibeType = "حرفه‌ای" | "معمولی" | "طنز";
 let vibes: VibeType[] = ["حرفه‌ای", "معمولی", "طنز"];
-
-
 
 const BioGenerator = () => {
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
   const [vibe, setVibe] = useState<VibeType>("حرفه‌ای");
-  const [generatedBios, setGeneratedBios] = useState<String | undefined>("");
+  const [generatedBios, setGeneratedBios] = useState<GeneratedBio[]>([
+    {
+      id: "1",
+      content: "",
+    },
+  ]);
   const [isCooldown, setIsCooldown] = useState(false);
 
+  const [cooldownTimer, setCooldownTimer] = useState(0);
+
   const bioRef = useRef<null | HTMLDivElement>(null);
+
+  // Handle cooldown timer countdown
+  useEffect(() => {
+    let interval: ReturnType<typeof setInterval>;
+    if (isCooldown && cooldownTimer > 0) {
+      interval = setInterval(() => {
+        setCooldownTimer((timer) => timer - 1);
+      }, 1000);
+    } else if (cooldownTimer === 0) {
+      setIsCooldown(false);
+    }
+    return () => clearInterval(interval);
+  }, [isCooldown, cooldownTimer]);
 
   const scrollToBios = () => {
     if (bioRef.current !== null) {
@@ -36,13 +56,14 @@ const BioGenerator = () => {
     }
   };
 
-
+  const handleBioChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setBio(event.target.value);
+  };
 
   const generateBio = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-
 
     if (isCooldown) {
       toast("لطفا چند لحظه صبر کنید دوباره بزنید", {
@@ -51,19 +72,26 @@ const BioGenerator = () => {
       return;
     }
 
-    setGeneratedBios("");
+    setGeneratedBios([
+      {
+        id: "1",
+        content: "",
+      },
+    ]);
     setLoading(true);
     setIsCooldown(true);
 
+    setCooldownTimer(20);
+
     try {
-      const messages = `Generate 2 ${vibe} biographies with no hashtags, in Persian language, and clearly labeled "1." and "2.". ${
+      const messages = `Generate 2 ${vibe} biographies with no hashtags, in Persian language. ${
         vibe === "طنز"
           ? "Make sure there is a joke in there and it's a little ridiculous."
           : ""
       } base them on this context: ${bio}${bio.slice(-1) === "." ? "" : " "}`;
       console.log(messages);
 
-      const response = await fetch("/api/chat", {
+      const response = await fetch("/api/langchain", {
         method: "POST",
         mode: "no-cors",
         headers: {
@@ -71,15 +99,27 @@ const BioGenerator = () => {
         },
         body: JSON.stringify(messages),
       });
-      const data = await response.json();
+      console.log(response);
 
-      setGeneratedBios(data);
-    } catch (error) {
-      if (error instanceof SyntaxError && error.message.includes("JSON")) {
-        console.error("Invalid JSON input:", error);
-      } else {
-        console.error("Unexpected error occurred:", error);
+      if (!response.ok) {
+        const errormessage = await response.json();
+        sonnar.error(
+          "به نظر میاد مشکلی هست:", {
+            description: errormessage.error,
+            duration: 15000,
+            className: "text-base"
+          }
+        )
       }
+
+      if (response.ok) {
+        const data = await response.json();
+
+        const allBios: GeneratedBio[] = data.output
+        setGeneratedBios(allBios);
+      }
+
+    } catch (error) {
       const err = error as Error;
       console.log(err);
       sonnar.error("به نظر میاد مشکلی هست", {
@@ -87,7 +127,7 @@ const BioGenerator = () => {
       });
     } finally {
       setLoading(false);
-      setTimeout(() => setIsCooldown(false), 10000)
+      setCooldownTimer(0);
     }
   };
 
@@ -96,7 +136,7 @@ const BioGenerator = () => {
       <div className="flex flex-1 w-full flex-col items-center justify-center text-center px-4">
         <h2 className="text-xl sm:text-2xl !leading-[4rem] font-bold text-slate-900">
           با
-          <span className="px-2 text-[#0BA37F]">EinGPT</span>
+          <span className="px-2 text-[#0BA37F]">BioGPT</span>
           برای خودت بایو حـرفه‌ای بساز 😎
         </h2>
         <div className="w-full sm:max-w-2xl mt-6 sm:mt-1 p-4 border">
@@ -114,7 +154,7 @@ const BioGenerator = () => {
             </div>
             <Textarea
               value={bio}
-              onChange={(e) => setBio(e.target.value)}
+              onChange={handleBioChange}
               rows={4}
               className="w-full rounded-md border-gray-600 shadow-sm focus:border-black focus:ring-black"
               placeholder={"طراح گرافیک، ۴ سال سابقه کار"}
@@ -155,13 +195,18 @@ const BioGenerator = () => {
             </div>
           </div>
           {!loading && (
-            <button
-              className="bg-black rounded-lg text-white font-semibold px-4 py-3 sm:mt-10 mt-8 hover:bg-black/70 w-2/4 disabled:bg-black/50"
+            <Button
+              className={`rounded-lg text-white font-semibold px-4 py-3 sm:mt-10 mt-8 w-2/4 ${
+                bio.length === 0 || isCooldown ? "bg-orange-600" : "bg-black"
+              } ${isCooldown ? "hover:bg-orange-600" : "hover:bg-black/70"}`}
               onClick={(e) => generateBio(e)}
               disabled={bio.length === 0}
             >
-              بزن اینجا تا بسازم
-            </button>
+              {isCooldown
+                ? `صبر کن ${cooldownTimer} ثانیه`
+                : "بزن اینجا تا بسازم"}
+              {/* بزن اینجا تا بسازم */}
+            </Button>
           )}
           {loading && (
             <button
@@ -190,25 +235,23 @@ const BioGenerator = () => {
                 </h2>
               </div>
               <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto">
-                {/* {generatedBios
-                  .substring(generatedBios.indexOf("1") + 3)
-                  .split("2.")
-                  .map((generatedBio) => {
-                    return (
+                  {
+                    generatedBios && generatedBios.map((bio) => (
                       <div
                         className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border"
                         onClick={() => {
-                          navigator.clipboard.writeText(generatedBio);
+                          navigator.clipboard.writeText(bio.content);
                           toast("بایو کپی شد", {
                             icon: "✂️",
                           });
                         }}
-                        key={generatedBio}
+                        key={bio.id}
                       >
-                        <p>{generatedBio}</p>
+                        <p>{bio.content}</p>
                       </div>
-                    );
-                  })} */}
+                    ))
+                  }
+
               </div>
             </>
           )}
