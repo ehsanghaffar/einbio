@@ -20,6 +20,8 @@ import { GeneratedBio } from "@/types/types";
 export type VibeType = "حرفه‌ای" | "معمولی" | "طنز";
 let vibes: VibeType[] = ["حرفه‌ای", "معمولی", "طنز"];
 
+const NEXT_PUBLIC_COOLDOWN_TIME = process.env.NEXT_PUBLIC_COOLDOWN_TIME
+
 const BioGenerator = () => {
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
@@ -69,7 +71,7 @@ const BioGenerator = () => {
     setLoading(true);
     setIsCooldown(true);
 
-    setCooldownTimer(90);
+    setCooldownTimer(NEXT_PUBLIC_COOLDOWN_TIME);
 
     try {
       const messages = `Generate 2 ${vibe} biographies with no hashtags, in Persian language. ${
@@ -112,7 +114,7 @@ const BioGenerator = () => {
       });
     } finally {
       setLoading(false);
-      setCooldownTimer(90);
+      setCooldownTimer(NEXT_PUBLIC_COOLDOWN_TIME);
     }
   };
 
