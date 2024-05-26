@@ -6,23 +6,14 @@ export default function Footer() {
     <div className="border-t pt-2 sm:py-4">
       <div className="container flex flex-row justify-between items-center">
         <div className="text-xs sm:text-sm">
-        ساخته شده با{" "}
+        ساخته شده توسط{" "}
         <a
-          href="https://openai.com/blog/chatgpt"
+          href="https://ehsanghaffarii.ir"
           target="_blank"
           rel="noreferrer"
-          className="font-bold hover:underline transition underline-offset-2 text-[#0BA37F]"
+          className="font-bold hover:underline transition underline-offset-2 text-amber-700/50"
         >
-          ChatGPT{" "}
-        </a>
-        و{" "}
-        <a
-          href="https://tailwindcss/"
-          target="_blank"
-          rel="noreferrer"
-          className="font-bold hover:underline transition underline-offset-2 text-[#37BCF8]"
-        >
-          Tailwindcss{" "}
+          Ehsan{" "}Ghaffar
         </a>
         </div>
       <div className="items-center">
