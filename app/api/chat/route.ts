@@ -3,7 +3,7 @@ import { errorHandler } from "@/libs/utils";
 
 // export const dynamic = 'force-dynamic'
 
-const apikey = process.env.NEXT_OPENAI_API_KEY
+const apikey = process.env.NEXT_PUBLIC_OPENAI_API_KEY
 
 export async function POST(requset: Request) {
   const messages = await requset.json()
