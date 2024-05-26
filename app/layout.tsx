@@ -1,5 +1,5 @@
 import Header from '@/components/Header';
-import './globals.css';
+import '@/styles/globals.css';
 import Footer from '@/components/Footer';
 import { Toaster } from '@/components/ui/sonner';
 import { Metadata } from 'next';
@@ -36,14 +36,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fa" dir="rtl">
-      <body className=" min-h-full flex flex-col">
+      <body className="min-h-screen flex flex-col">
         <header>
         <Header />
         </header>
         <main className="flex flex-1">
         {children}
         </main>
-        <footer className='flex flex-col w-full absolute bottom-0'>
+        <footer className='flex flex-col w-full bottom-0'>
         <Footer />
         </footer>
         <Toaster richColors />

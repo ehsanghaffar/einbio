@@ -1,6 +1,6 @@
 import ServerError from "@/types/types";
 import { type ClassValue, clsx } from "clsx"
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
@@ -25,3 +25,17 @@ export function errorHandler(err: unknown) {
     );
   }
 }
+
+
+
+export function getIP(req: NextRequest) {
+  let ip = req.ip ?? req.headers.get("x-real-ip");
+  const forwardedFor = req.headers.get("x-forwarded-for");
+
+  if (!ip && forwardedFor) {
+    ip = forwardedFor.split(",").at(0) ?? "";
+  }
+
+  return ip;
+}
+
