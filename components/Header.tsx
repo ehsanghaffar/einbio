@@ -1,7 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
 import Github from "./GitHub";
-import { GithubIcon } from "lucide-react";
 
 export default function Header() {
   return (
