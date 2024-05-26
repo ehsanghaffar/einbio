@@ -69,7 +69,7 @@ const BioGenerator = () => {
     setLoading(true);
     setIsCooldown(true);
 
-    setCooldownTimer(20);
+    setCooldownTimer(90);
 
     try {
       const messages = `Generate 2 ${vibe} biographies with no hashtags, in Persian language. ${
@@ -112,7 +112,7 @@ const BioGenerator = () => {
       });
     } finally {
       setLoading(false);
-      setCooldownTimer(10);
+      setCooldownTimer(90);
     }
   };
 
