@@ -4,6 +4,8 @@ import Footer from '@/components/Footer';
 import { Toaster } from '@/components/ui/sonner';
 import { Metadata } from 'next';
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 
 type Props = {
   params: { id: string }
@@ -49,6 +51,7 @@ export default function RootLayout({
         </footer>
         <Toaster richColors />
         <Analytics />
+        <SpeedInsights />
         </body>
     </html>
   )
