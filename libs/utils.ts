@@ -1,4 +1,4 @@
-import ServerError from "@/types/types";
+import ServerError, { UserInputPayload } from "@/types/types";
 import { type ClassValue, clsx } from "clsx"
 import { NextRequest, NextResponse } from "next/server";
 import { twMerge } from "tailwind-merge"
@@ -35,7 +35,20 @@ export function getIP(req: NextRequest) {
   if (!ip && forwardedFor) {
     ip = forwardedFor.split(",").at(0) ?? "";
   }
-
   return ip;
 }
 
+
+export const createUserMessage = (input: UserInputPayload) => {
+  let userVibe = ""
+  if (input.vibe === "حرفه‌ای") {
+    userVibe = "Advanced"
+  } else if (input.vibe === "طنز") {
+    userVibe = "Joke"
+  } else if (input.vibe === "معمولی") {
+    userVibe = "Normal"
+  }
+  const messages = `Generate 2 ${userVibe} bios.base them on this context: ${input.bio}${input.bio.slice(-1) === "." ? "" : " "}`;
+
+  return messages
+}

@@ -16,3 +16,11 @@ export interface GeneratedBio {
   id: string;
   content: string;
 }
+
+export type VibeType = "حرفه‌ای" | "معمولی" | "طنز";
+
+
+export interface UserInputPayload {
+  vibe: VibeType;
+  bio: string;
+}
