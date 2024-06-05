@@ -1,4 +1,4 @@
-# BioGPT
+# EinBio
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/ehsanghaffar/biogpt)
 ![GitHub issues](https://img.shields.io/github/issues/ehsanghaffar/biogpt)
