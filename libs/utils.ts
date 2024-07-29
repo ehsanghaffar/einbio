@@ -1,6 +1,6 @@
 import ServerError, { UserInputPayload } from "@/types/types";
 import { type ClassValue, clsx } from "clsx"
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
@@ -25,19 +25,6 @@ export function errorHandler(err: unknown) {
     );
   }
 }
-
-
-
-export function getIP(req: NextRequest) {
-  let ip = req.ip ?? req.headers.get("x-real-ip");
-  const forwardedFor = req.headers.get("x-forwarded-for");
-
-  if (!ip && forwardedFor) {
-    ip = forwardedFor.split(",").at(0) ?? "";
-  }
-  return ip;
-}
-
 
 export const createUserMessage = (input: UserInputPayload) => {
   let userVibe = ""
