@@ -5,8 +5,9 @@ import { z } from "zod";
 import { createStructuredOutputChainFromZod } from "langchain/chains/openai_functions";
 import { PromptTemplate } from "@langchain/core/prompts";
 import { createOpenAIModel } from "@/libs/Langchain";
-import { createUserMessage, getIP } from "@/libs/utils";
+import { createUserMessage } from "@/libs/utils";
 import { checkRateLimit } from "@/store/rateLimitStore";
+import { getUserIp } from "@/libs/get-ip";
 
 export const runtime = "edge";
 
@@ -33,7 +34,7 @@ const apikey = process.env.NEXT_PUBLIC_OPENAI_API_KEY
 export async function POST(req: NextRequest) {
   try {
 
-    const ip = getIP(req);
+    const ip = getUserIp();
     if (!checkRateLimit(ip as string)) {
       return NextResponse.json({ error: "شما بیش از حد مجاز از سرویس استفاده کرده اید. چند ساعت بعد امتحان کنید" }, { status: 429 });
     }
