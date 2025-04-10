@@ -1,27 +1,14 @@
 import Link from "next/link";
-import Github from "./GitHub";
 
 export default function Header() {
   return (
-    <div className="flex justify-between items-center space-x-4 py-1 border-b sm:px-4">
+    <div className="mx-auto items-center space-x-2 py-1 sm:px-2">
       <Link href="/">
-        <img
-          alt="ClubGPT icon"
-          src="/screenshot.png"
-          className="sm:w-36"
-          width={100}
-          height={60}
-        />
+        <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent opacity-50">
+          Ein
+          <span className="text-gray-500 px-2">Bio</span>
+        </h1>
       </Link>
-      <a
-        className="flex items-center gap-2 justify-center border py-1 px-2 rounded text-xs sm:text-sm text-gray-600 transition-colors hover:bg-gray-100"
-        href="https://github.com/ehsanghaffar/biogpt"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Github />
-        <p>سورس کد</p>
-      </a>
     </div>
   );
 }
