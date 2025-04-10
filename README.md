@@ -1,138 +1,85 @@
-# EinBio
+# BioGPT - AI-Powered Social Media Bio Generator
 
-![GitHub repo size](https://img.shields.io/github/repo-size/ehsanghaffar/biogpt)
-![GitHub issues](https://img.shields.io/github/issues/ehsanghaffar/biogpt)
-![GitHub stars](https://img.shields.io/github/stars/ehsanghaffar/biogpt)
-![GitHub forks](https://img.shields.io/github/forks/ehsanghaffar/biogpt)
-![GitHub license](https://img.shields.io/github/license/ehsanghaffar/biogpt)
+BioGPT is an intelligent web application built with Next.js, Tailwind CSS, and OpenAI's GPT models. It helps users effortlessly generate engaging and personalized bios, welcome messages, and improved content for social media platforms.
 
-Create engaging social media bios with ease using the Social Media Bio Generator! This web application generates unique and personalized social media bios based on user input and offers different vibes to choose from.
+## 🚀 Features
 
-## Table of Contents
+- **Intelligent Bio Generator**: Create captivating social media bios tailored to your personality and goals.
+- **Smart Welcome Message Creator**: Generate personalized welcome messages suitable for various occasions and platforms.
+- **Content Enhancer**: Improve your existing content with AI-driven suggestions and edits.
 
-- [Features](#features)
-- [Demo](#demo)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Docker Compose](#docker-compose)
-- [Vibes](#vibes)
-- [Contributing](#contributing)
-- [License](#license)
+## 🛠️ Tech Stack
 
-## Features
+- **Framework**: [Next.js](https://nextjs.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **AI Integration**: [OpenAI API](https://openai.com/)
+- **UI Components**: [Headless UI](https://headlessui.com/), [Radix UI](https://www.radix-ui.com/)
+- **Icons**: [Lucide Icons](https://lucide.dev/)
+- **Form Handling**: [React Hook Form](https://react-hook-form.com/)
+- **Validation**: [Zod](https://github.com/colinhacks/zod)
+- **Notifications**: [Sonner](https://github.com/emilkowalski/sonner), [React Hot Toast](https://react-hot-toast.com/)
+- **Analytics**: [Vercel Analytics](https://vercel.com/analytics), [Vercel Speed Insights](https://vercel.com/speed-insights)
 
-- Generate personalized social media bios.
-- Choose from three different vibes: Advanced, Regular, and Funny.
-- User-friendly interface for input and bio selection.
-- Copy the generated bio to the clipboard with a single click.
-- Mobile-responsive design for a seamless experience on all devices.
+## 🐳 Docker Setup
 
-## Demo
+### Development
 
-![Demo](demo.gif)
+Build and run the development environment using Docker Compose:
 
-Check out the live demo of the Social Media Bio Generator [here](https://bio.ehsanghaffarii.ir/).
+```bash
+make build
+make start
+```
 
-## Installation
+### Production
 
-To run this application locally, follow these steps:
+Build the production Docker image:
 
-1. Clone this repository to your local machine:
+```bash
+docker build -f prod.Dockerfile -t biogpt-prod .
+docker run -p 3000:3000 biogpt-prod
+```
 
-   ```bash
-   git clone https://github.com/ehsanghaffar/biogpt 
-   ```
+## 🚧 Development Commands
 
-2. Navigate to the project directory:
+- **Run Development Server**:
 
-   ```bash
-   cd biogpt
-   ```
+```bash
+yarn dev
+```
 
-3. Install the required dependencies:
+- **Build for Production**:
 
-   ```bash
-   npm install
-   ```
+```bash
+yarn build
+```
 
-4. Start the application:
+- **Start Production Server**:
 
-   ```bash
-   npm start
-   ```
+```bash
+yarn start
+```
 
-5. Open your web browser and go to [http://localhost:3000](http://localhost:3000) to use the Social Media Bio Generator.
+- **Clean and Reinstall Dependencies**:
 
-## Usage
+```bash
+yarn run clean
+```
 
-1. Visit the web application at [your-website-url](https://bio.ehsanghaffarii.ir/).
+## 🌐 Deployment
 
-2. Enter a short description about yourself or the person for whom you want to create a social media bio.
+The project includes a GitHub Actions workflow (`.github/workflows/nextjs.yml`) configured for automated deployment. Adjust and uncomment the deployment steps to deploy to GitHub Pages or other hosting providers.
 
-3. Select the desired vibe from the options: Advanced, Regular, or Funny.
+## 📄 License
 
-4. Click the "Generate Bio" button, and a unique social media bio will be displayed.
+This project is licensed under the MIT License - see the [LICENCE](LICENCE) file for details.
 
-5. Click the "Copy to Clipboard" button to easily copy the generated bio.
+## 📌 Author
 
-## Docker Compose
+- **Ehsan Ghaffar** - [GitHub](https://github.com/ehsaghaffar)
 
-You can also run the Social Media Bio Generator using Docker Compose. Follow these steps:
+## 🔗 Useful Links
 
-1. Create a Docker network:
-
-   ```bash
-   docker network create my_network
-   ```
-
-2. Build the project:
-
-   ```bash
-   docker compose -f docker-compose.dev.yml build
-   ```
-
-3. Start the application:
-
-   ```bash
-   docker compose -f docker-compose.dev.yml up
-   ```
-
-## Vibes
-
-The Social Media Bio Generator offers three different vibes to suit your personality and style:
-
-- **Advanced**: For a professional and sophisticated bio.
-- **Regular**: A balanced and standard bio.
-- **Funny**: Add some humor to your bio for a fun and light-hearted feel.
-
-## Contributing
-
-We welcome contributions from the open-source community. If you'd like to contribute to this project, please follow these steps:
-
-1. Fork this repository.
-
-2. Create a new branch for your feature or bug fix:
-
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-
-3. Make your changes and commit them:
-
-   ```bash
-   git commit -m 'Add your commit message here'
-   ```
-
-4. Push your changes to your fork:
-
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-
-5. Create a pull request on the original repository.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [OpenAI API Documentation](https://platform.openai.com/docs/api-reference)
