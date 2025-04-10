@@ -5,7 +5,7 @@ import HomeFooter from "@/components/HomeFooter";
 
 export default function IndexPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-bl from-[#ffe4e6]  to-[#ccfbf1]">
+    <div className="min-h-screen flex flex-col bg-gradient-to-bl from-[rgb(255,228,230)]  to-[#ccfbf1]">
       <BaseHeader />
       <main className="flex-1 overflow-hidden">
         <HomeHero />

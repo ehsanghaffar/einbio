@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "console-ninja": {
+      "command": "node",
+      "args": [
+        "~/.console-ninja/mcp/"
+      ]
+    }
+  }
+}
