@@ -24,3 +24,10 @@ export interface UserInputPayload {
   vibe: VibeType;
   bio: string;
 }
+
+
+export interface GenerateBioPayload {
+  aboutYou: string;
+  platform: string;
+  tone: string;
+}

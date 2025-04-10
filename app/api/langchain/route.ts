@@ -4,10 +4,10 @@ import { z } from "zod";
 
 import { createStructuredOutputChainFromZod } from "langchain/chains/openai_functions";
 import { PromptTemplate } from "@langchain/core/prompts";
-import { createOpenAIModel } from "@/libs/Langchain";
-import { createUserMessage } from "@/libs/utils";
+import { createOpenAIModel } from "@/lib/Langchain";
+import { createUserMessage } from "@/lib/utils";
 import { checkRateLimit } from "@/store/rateLimitStore";
-import { getUserIp } from "@/libs/get-ip";
+import { getUserIp } from "@/lib/get-ip";
 
 export const runtime = "edge";
 
