@@ -26,11 +26,13 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 
 const NEXT_PUBLIC_COOLDOWN_TIME = process.env.NEXT_PUBLIC_COOLDOWN_TIME || 10;
 
-const MotionCard = motion(Card);
-const MotionButton = motion(Button);
+const MotionCard = motion.create(Card);
+const MotionButton = motion.create(Button);
 
 const BioGenerator = () => {
   const [cooldownTimer, setCooldownTimer] = useState(0);
@@ -102,26 +104,13 @@ const BioGenerator = () => {
       color: "bg-blue-700",
       limit: 220,
     },
-    {
-      value: "tiktok",
-      label: "تیک‌تاک",
-      emoji: <Music className="h-4 w-4" />,
-      color: "bg-black",
-      limit: 80,
-    },
+
     {
       value: "telegram",
       label: "تلگرام",
       emoji: <MessageCircle className="h-4 w-4" />,
       color: "bg-blue-500",
       limit: 70,
-    },
-    {
-      value: "youtube",
-      label: "یوتیوب",
-      emoji: <Youtube className="h-4 w-4" />,
-      color: "bg-red-600",
-      limit: 1000,
     },
   ];
 
@@ -233,7 +222,7 @@ const BioGenerator = () => {
   return (
     <div
       dir="rtl"
-      className="min-h-screen bg-gradient-to-b from-orange-50 to-white py-8 px-4"
+      className="min-h-screen bg-gradient-to-b from-orange-50 to-white"
     >
       <div className="container mx-auto max-w-4xl">
         {/* Header Section */}
@@ -241,18 +230,16 @@ const BioGenerator = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-10"
+          className="text-center mb-6"
         >
           {/* <div className="inline-block p-2 bg-white rounded-full shadow-lg mb-4">
             <div className="bg-gradient-to-r from-orange-500 to-pink-500 rounded-full p-1">
               <Sparkles className="size-4 text-white" />
             </div>
           </div> */}
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent mb-2">
-            EIN BIO
-          </h1>
-          <p className="text-gray-600 max-w-xl mx-auto">
-            بیوی حرفه‌ای و جذاب برای شبکه‌های اجتماعی خود را در چند ثانیه بسازید
+          <Header />
+          <p className="text-gray-600 max-w-xl mx-auto text-xs sm:text-lg">
+            بایو حرفه‌ای و جذاب برای شبکه‌های اجتماعی بسازید
           </p>
         </motion.div>
 
@@ -261,7 +248,7 @@ const BioGenerator = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="border-0 shadow-xl bg-white rounded-2xl overflow-hidden"
+          className="border-0 shadow bg-white rounded-2xl overflow-hidden"
         >
           {/* Custom Navigation */}
           <div className="border-b">
@@ -314,7 +301,7 @@ const BioGenerator = () => {
                     پلتفرم شبکه اجتماعی را انتخاب کنید
                   </h3>
                 </div>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {platforms.map((plat) => (
                     <MotionButton
                       key={plat.value}
@@ -330,7 +317,7 @@ const BioGenerator = () => {
                     >
                       <div className="flex items-center">
                         <span
-                          className={`mr-2 ${
+                          className={`ml-2 ${
                             platform === plat.value
                               ? "text-white"
                               : "text-gray-600"
@@ -490,14 +477,14 @@ const BioGenerator = () => {
                 )}
                 <div className="relative">
                   <div className="p-6 bg-gradient-to-r from-gray-50 to-white rounded-xl border-2 border-gray-100 text-gray-800 shadow-inner">
-                    <p className="text-lg leading-relaxed">{generatedBio}</p>
+                    <p className=" leading-relaxed">{generatedBio}</p>
                   </div>
                   <MotionButton
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     size="sm"
                     variant="outline"
-                    className="absolute top-3 left-3 rounded-full h-10 w-10 p-0 border-2"
+                    className="absolute top-2 left-2 rounded-full h-10 w-10 p-0 border-2"
                     onClick={copyToClipboard}
                   >
                     {copied ? (
@@ -509,7 +496,7 @@ const BioGenerator = () => {
                 </div>
 
                 {/* Preview Section */}
-                <div className="bg-gray-50 rounded-xl p-5 border border-gray-100">
+                <div className="bg-gray-50 rounded-xl p-2 border border-gray-100">
                   <h4 className="font-bold text-gray-700 mb-3 flex items-center">
                     <Heart className="h-4 w-4 text-pink-500 ml-2" />
                     پیش‌نمایش در{" "}
@@ -523,8 +510,6 @@ const BioGenerator = () => {
                         ? "border-blue-200"
                         : platform === "linkedin"
                         ? "border-blue-700"
-                        : platform === "tiktok"
-                        ? "border-gray-800"
                         : platform === "telegram"
                         ? "border-blue-300"
                         : "border-red-200"
@@ -538,8 +523,6 @@ const BioGenerator = () => {
                           ? "bg-blue-500"
                           : platform === "linkedin"
                           ? "bg-blue-700"
-                          : platform === "tiktok"
-                          ? "bg-black"
                           : platform === "telegram"
                           ? "bg-blue-500"
                           : "bg-red-600"
@@ -587,7 +570,7 @@ const BioGenerator = () => {
                     onClick={generateBio}
                   >
                     <RefreshCw className="ml-2 h-4 w-4" />
-                    تولید مجدد
+                    ساخت مجدد
                   </MotionButton>
                 </div>
               </motion.div>
@@ -602,16 +585,7 @@ const BioGenerator = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mt-8 text-center text-sm text-gray-500"
         >
-          <p>با EINABIO در چند ثانیه بیوهای حرفه‌ای شبکه‌های اجتماعی بسازید</p>
-          <div className="flex justify-center mt-2 space-x-2 space-x-reverse">
-            {platforms.map((plat) => (
-              <span key={plat.value} className="inline-block">
-                <div className={`p-1.5 rounded-full ${plat.color} text-white`}>
-                  {plat.emoji}
-                </div>
-              </span>
-            ))}
-          </div>
+          <Footer />
         </motion.div>
       </div>
     </div>

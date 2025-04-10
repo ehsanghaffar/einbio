@@ -1,30 +1,30 @@
-import { Twitter } from "lucide-react";
 import Link from "next/link";
+import Github from "./GitHub";
 
 export default function Footer() {
   return (
-    <div className="border-t pt-2 sm:py-4">
-      <div className="container flex flex-row justify-between items-center">
-        <div className="text-xs sm:text-sm">
-        ساخته شده توسط{" "}
-        <a
-          href="https://ehsanghaffarii.ir"
-          target="_blank"
-          rel="noreferrer"
-          className="font-bold hover:underline transition underline-offset-2 text-amber-700/50"
-        >
-          Ehsan{" "}Ghaffar
-        </a>
+    <div className="flex flex-row justify-between items-center">
+      <div className="text-xs">
+        <p>
+          طراحی و پیاده سازی با عشق توسط{" "}
+            <a
+              href="https://github.com/ehsanghaffar"
+              target="_blank"
+              rel="noreferrer"
+              className="font-bold hover:underline transition underline-offset-2 text-orange-500"
+            >
+              احسان غفار
+            </a>
+          </p>
         </div>
-      <div className="items-center">
+      <div className="flex flex-row gap-2 items-center">
         <Link
-          href="https://twitter.com/ehsanghaffar"
+          href="https://github.com/ehsanghaffar"
           className="group"
-          aria-label="Ehsan Ghaffar On Twitter"
+          aria-label="Ehsan Ghaffar On GitHub"
         >
-        <Twitter width={16} fill="#1DA1F2" color="#1DA1F2" />
+          <Github className="size-4 fill-gray-600" />
         </Link>
-      </div>
       </div>
     </div>
   );
