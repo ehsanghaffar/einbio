@@ -161,7 +161,7 @@ const BioGenerator = () => {
     setNote("");
 
     if (isCooldown) {
-      sonnar("لطفا چند لحظه صبر کنید دوباره بزنید", {
+      sonnar("لطفا چند لحظه صبر کن و دوباره بزن", {
         icon: "⏳",
       });
       return;
@@ -205,16 +205,16 @@ const BioGenerator = () => {
       }
       setActiveView("result");
 
-      sonnar.success("بیو تولید شد!");
+      sonnar.success("بایو ساخته شد!");
     } catch (err) {
       const errorMessage =
         err instanceof Error
           ? err.message
-          : "خطایی در تولید بیو رخ داد. لطفاً دوباره تلاش کنید.";
+          : "خطایی در تولید بایو رخ داد. لطفاً دوباره تلاش کنید.";
       console.error("Error generating bio:", err);
       setError(errorMessage);
 
-      sonnar.error("خطایی در تولید بیو رخ داد. لطفاً دوباره تلاش کنید.");
+      sonnar.error("خطایی در تولید بایو رخ داد. لطفاً دوباره تلاش کنید.");
     } finally {
       setIsGenerating(false);
       setCooldownTimer(NEXT_PUBLIC_COOLDOWN_TIME);
@@ -241,7 +241,7 @@ const BioGenerator = () => {
           </div> */}
           <Header />
           <p className="text-gray-600 max-w-xl mx-auto text-xs sm:text-lg">
-            بایو حرفه‌ای و جذاب برای شبکه‌های اجتماعی بسازید
+            بایوهای باحال و جذاب برای شبکه‌های اجتماعی بساز
           </p>
         </motion.div>
 
@@ -265,7 +265,7 @@ const BioGenerator = () => {
               >
                 <div className="flex items-center">
                   <Zap className="h-4 w-4 ml-2" />
-                  ساخت بیو
+                  ساخت بایو
                 </div>
                 {activeView === "generate" && (
                   <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-500"></div>
@@ -300,7 +300,7 @@ const BioGenerator = () => {
                 <div className="flex items-center gap-2 mb-3">
                   <Globe className="h-5 w-5 text-orange-500" />
                   <h3 className="font-bold text-gray-800">
-                    پلتفرم شبکه اجتماعی را انتخاب کنید
+                   شبکه اجتماعی رو انتخاب کن
                   </h3>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -339,7 +339,7 @@ const BioGenerator = () => {
                 <div className="flex items-center gap-2 mb-3">
                   <Smile className="h-5 w-5 text-orange-500" />
                   <h3 className="font-bold text-gray-800">
-                    لحن خود را انتخاب کنید
+                    نوع بایو رو انتخاب کن
                   </h3>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -369,7 +369,7 @@ const BioGenerator = () => {
                   <div className="flex items-center gap-2">
                     <Zap className="h-5 w-5 text-orange-500" />
                     <h3 className="font-bold text-gray-800">
-                      درباره خودتان به ما بگویید
+                      درباره خودت یا پیجت بگو
                     </h3>
                   </div>
                   {platform && (
@@ -382,7 +382,7 @@ const BioGenerator = () => {
                   )}
                 </div>
                 <Textarea
-                  placeholder="علایق، مهارت‌ها یا هر چیزی که شما را منحصر به فرد می‌کند را به اشتراک بگذارید..."
+                  placeholder="ویژگی یا هرچیزی در مورد خودت یا پیجت بگو"
                   className="min-h-[120px] resize-none border-2 focus:border-orange-300 rounded-xl p-4 transition-all"
                   value={aboutYou}
                   onChange={(e) => setAboutYou(e.target.value)}
@@ -391,8 +391,8 @@ const BioGenerator = () => {
                 {platform && charCount > getCurrentPlatform().limit * 0.8 && (
                   <p className={`text-sm ${getCharLimitColor()}`}>
                     {charCount > getCurrentPlatform().limit * 0.9
-                      ? "به محدودیت کاراکتر نزدیک شده‌اید!"
-                      : "در حال نزدیک شدن به محدودیت کاراکتر هستید."}
+                      ? "به محدودیت کاراکتر نزدیک شدی!"
+                      : "در حال نزدیک شدن به محدودیت کاراکتر هستی."}
                   </p>
                 )}
               </div>
@@ -423,7 +423,7 @@ const BioGenerator = () => {
                 ) : (
                   <>
                     <Sparkles className="ml-2 h-5 w-5" />
-                    ساخت بیو
+                    ساخت بایو
                   </>
                 )}
               </MotionButton>
