@@ -177,6 +177,8 @@ const BioGenerator = () => {
         language: "persian",
       };
 
+      console.log(requestData);
+
       // Make the API request
       const response = await fetch("/api/generate", {
         method: "POST",

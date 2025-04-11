@@ -63,6 +63,9 @@ export async function POST(request: Request) {
       tone,
     })
 
+    console.log(result);
+
+
     // Extract the generated bio from the result
     const generatedBio = result.text.trim()
 
