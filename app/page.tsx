@@ -12,12 +12,10 @@ import {
   Instagram,
   Linkedin,
   MessageCircle,
-  Music,
   RefreshCw,
   Smile,
   Sparkles,
   Twitter,
-  Youtube,
   Zap,
 } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
@@ -205,7 +203,9 @@ const BioGenerator = () => {
       }
       setActiveView("result");
 
-      sonnar.success("بایو ساخته شد!");
+      sonnar.success("بایو ساخته شد!", {
+        duration: 2000,
+      });
     } catch (err) {
       const errorMessage =
         err instanceof Error
